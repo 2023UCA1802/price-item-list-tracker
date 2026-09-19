@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Item = require('../models/Item');
 
-// Get all items belonging to a folder
+// Get all items belonging to a folder, sorted newest-created first
 router.get('/folder/:folderId', async (req, res) => {
   try {
-    const items = await Item.find({ folder: req.params.folderId }).sort({ date: -1 });
+    const items = await Item.find({ folder: req.params.folderId }).sort({ createdAt: -1 });
     res.json(items);
   } catch (err) {
     res.status(500).json({ message: err.message });
