@@ -10,4 +10,7 @@ const ItemSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Index to support efficient newest-first queries (createdAt: -1)
+ItemSchema.index({ createdAt: -1 });
+
 module.exports = mongoose.model('Item', ItemSchema);
